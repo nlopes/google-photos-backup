@@ -1,0 +1,33 @@
+[package]
+name = "google-photos-backup"
+version = "0.1.0"
+authors = ["Norberto Lopes <nlopes.ml@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "google_photos_backup"
+path = "src/lib.rs"
+
+[[bin]]
+name = "google-photos-backup"
+path = "src/main.rs"
+
+[dependencies]
+google-photoslibrary1 = "*"
+# This project intentionally uses an old version of Hyper. See
+# https://github.com/Byron/google-apis-rs/issues/173 for more
+# information.
+hyper = "^0.10"
+hyper-rustls = "^0.6"
+serde = "^1.0"
+serde_json = "^1.0"
+yup-oauth2 = "^1.0"
+env_logger = "^0.7"
+log = "=0.4"
+crossbeam-channel = "=0.3"
+tokio = "=0.1"
+tokio-timer = "=0.2"
+reqwest = "=0.9.17"
+clap = "=2.33"
+dirs = "=2.0"
+regex = "=1.3"
