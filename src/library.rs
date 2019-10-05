@@ -23,7 +23,7 @@ pub struct Library {
 
 impl Library {
     pub fn new(config: &Config) -> Self {
-        let auth = authenticate(&config);
+        let auth = authenticate(config);
         let client = Client::with_connector(HttpsConnector::new(TlsClient::new()));
         let hub = PhotosLibrary::new(client, auth);
 
@@ -190,7 +190,7 @@ impl Library {
         for album in albums {
             let album_path = album.create_dir(&self.config.archive()).unwrap();
             album
-                .link_media_items(&self, &self.config.archive(), &album_path)
+                .link_media_items(self, &self.config.archive(), &album_path)
                 .unwrap();
         }
         Ok(())
@@ -201,7 +201,7 @@ impl Library {
         for album in albums {
             let album_path = album.create_dir(&self.config.archive()).unwrap();
             album
-                .download_media_items(&self, &album_path, sender)
+                .download_media_items(self, &album_path, sender)
                 .unwrap();
         }
         Ok(())

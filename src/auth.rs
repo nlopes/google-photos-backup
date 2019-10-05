@@ -1,3 +1,5 @@
+use std::net::TcpListener;
+
 use hyper::net::HttpsConnector;
 use hyper::Client;
 use hyper_rustls::TlsClient;
@@ -10,16 +12,8 @@ pub type LibraryAuthenticator =
 
 use crate::config::Config;
 
-// https://github.com/rust-lang-nursery/rust-cookbook/issues/500
-fn port_is_available(port: u16) -> bool {
-    match std::net::TcpListener::bind(("127.0.0.1", port)) {
-        Ok(_) => true,
-        Err(_) => false,
-    }
-}
-
 fn get_available_port() -> Option<u16> {
-    (8080..65535).find(|port| port_is_available(*port))
+    (8080..65535).find(|port| TcpListener::bind(("127.0.0.1", *port)).is_ok())
 }
 
 pub fn authenticate(config: &Config) -> LibraryAuthenticator {
