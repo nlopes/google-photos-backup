@@ -28,6 +28,6 @@ impl Matcher for MediaItem {
         if !filename_filtered && !description_filtered {
             info!("Skipping media due to filtering...");
         }
-        return filename_filtered || description_filtered
+        filename_filtered || description_filtered
     }
 }
