@@ -60,7 +60,9 @@ fn get(client: &reqwest::Client, url: &str, filepath: &Path) {
     let mut sleep_duration = 100;
 
     while !success && retries > 0 {
-        client.get(&format!("{}=d", url)).send()
+        client
+            .get(&format!("{}=d", url))
+            .send()
             .and_then(|resp| {
                 match resp.status() {
                     reqwest::StatusCode::OK => {

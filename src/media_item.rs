@@ -1,8 +1,8 @@
 use log::info;
 use regex::Regex;
 
-use google_photoslibrary1::MediaItem;
 use crate::filtering::Matcher;
+use google_photoslibrary1::MediaItem;
 
 impl Matcher for MediaItem {
     fn matches(&self, regex: Option<Regex>) -> bool {

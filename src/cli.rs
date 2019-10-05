@@ -1,4 +1,4 @@
-use clap::{clap_app, crate_version, crate_authors};
+use clap::{clap_app, crate_authors, crate_version};
 
 pub fn cli<'a>() -> clap::ArgMatches<'a> {
     clap_app!(

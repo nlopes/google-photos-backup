@@ -37,7 +37,7 @@ impl Config {
                 shared_albums,
                 album_filter,
                 media_filter,
-            }
+            },
         }
     }
 

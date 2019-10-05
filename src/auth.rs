@@ -48,11 +48,5 @@ pub fn authenticate(config: &Config) -> LibraryAuthenticator {
         Some(FlowType::InstalledInteractive)
     };
 
-    Authenticator::new(
-        &secret,
-        DefaultAuthenticatorDelegate,
-        client,
-        storage,
-        flow,
-    )
+    Authenticator::new(&secret, DefaultAuthenticatorDelegate, client, storage, flow)
 }
