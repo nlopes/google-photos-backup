@@ -37,10 +37,8 @@ The second screen will ask you to copy&paste a code into the console.
 
 The screens for authorisation will look like this:
 
-![View](https://raw.githubusercontent.com/nlopes/google-photos-backup/master/screenshots/view.png)
-
-![View and Manage](https://raw.githubusercontent.com/nlopes/google-photos-backup/master/screenshots/view-manage.png)
-
+<img src="https://raw.githubusercontent.com/nlopes/google-photos-backup/master/screenshots/view.png" width="30%" height="30%">
+<img src="https://raw.githubusercontent.com/nlopes/google-photos-backup/master/screenshots/view-manage.png" width="30%" height="30%">
 
 Once you authorise `google-photos-backup`, we store your tokens locally and use that
 without asking again. If you ever need to re-authenticate, just delete the
