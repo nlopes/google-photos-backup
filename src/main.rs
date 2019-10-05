@@ -20,7 +20,6 @@ fn main() -> Result<()> {
     if config.options().shared_albums {
         library.download_shared_albums(&work_sender)?;
     }
-    //library.download_media_items(&work_sender)?;
-    //library.download_albums()
-    Ok(())
+    library.download_media_items(&work_sender)?;
+    library.download_albums()
 }
