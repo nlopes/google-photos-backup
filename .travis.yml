@@ -1,17 +1,29 @@
+os:
+  - osx
+  - windows
+  - linux
 language: rust
 rust:
-  - stable
-  - beta
-  - nightly
+- stable
+- beta
+- nightly
 matrix:
   allow_failures:
-    - rust: nightly
+  - rust: nightly
 cache: cargo
-
 before_script:
-  - rustup component add clippy rustfmt
-
+- rustup component add clippy rustfmt
 script:
-  - cargo fmt -- --check
-  - cargo test --verbose
-  - cargo clippy --all-targets --all-features -- -D clippy::nursery
+- cargo fmt -- --check
+- cargo test --verbose
+- cargo clippy --all-targets --all-features -- -D clippy::nursery
+before_deploy:
+- cargo build --release --target-dir "$TRAVIS_OS_NAME"
+- if [ "$TRAVIS_OS_NAME" = "windows" ]; mv "./${TRAVIS_OS_NAME}/release/google-photos-backup.exe" "./${TRAVIS_OS_NAME}/release/google-photos-backup"; fi
+deploy:
+  provider: releases
+  api_key:
+    secure: mWJ9BXhxrttfuAuSznlaucpnJu8wlpGjwLmikFhF1n/XdGo/iLej3s+TfnkiKOIAUwBvRyGRNDFzO1uDZv5BdfCyobM/tW763k+imsFNaSnoLGOKZ+uqUA1CkkuCEmRy+ECfXWhtYt3JPWVGgya02Rhyx8ciVDaZOpAwRXslVO03viP1qVZYGqm/9U6VKdUvrG1cXc/kYRRQ1DOujp8mjejdnQwtpDBWicRzOQakjgQPSnjVOZvf5+yjBOKk96V356oXfEQEyAgezXihOy+24Wp9gxg2MxYrt4tOizWpFaK91AX0nolRL0YGZi09EShgkHuby/3wky4VAaiEXZfy67t//JbMuILytNL9855cL6DaLCHkLLTOv31Xej3Vx4xGUIz+qAoUhqnSjNgtIfWZSHDWOKoQCF30i9jUtoC/47i8oJ6sSJKqMoM9EsgT1X+cAhrvQ0CFe1KQNRSNOxVzK/7qXuIN4d0eZzH18mb5VfL5YOIWwNMJ1VHDPAxUF0/719THsG546UHXYqJfXH9xzT+Bf+v5El9Qqlhlm+jrOFpiX8H45PMY25g9vovEeNtyrgtRJPv0P8AkEcqtY2H2lGuSs0MMJsflVUjAvI3pyBw4q/ZsdUnjrv68h6dOunVN9ZUtCiFvjaqlT/zuMj0KlsiojJe76Ze2gkAgJ+yQNyQ=
+  file: "./${TRAVIS_OS_NAME}/release/google-photos-backup"
+  on:
+    tags: true
