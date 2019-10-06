@@ -1,0 +1,26 @@
+environment:
+  VCPKGRS_DYNAMIC: 1
+  OPENSSL_DIR: c:\projects\vcpkg\installed\x64-windows
+
+install:
+  # Install Rust
+  - curl -sSf -o rustup-init.exe https://win.rustup.rs/
+  - rustup-init.exe -y
+  - set PATH=%PATH%;C:\Users\appveyor\.cargo\bin
+  - rustc -V
+  - cargo -V
+  - rustup component add rustfmt clippy
+  - git clone https://github.com/Microsoft/vcpkg c:\projects\vcpkg
+  - c:\projects\vcpkg\bootstrap-vcpkg.bat
+  - echo yes > c:\projects\vcpkg\Downloads\AlwaysAllowDownloads
+  - c:\projects\vcpkg\vcpkg.exe install openssl openssl:x64-windows
+  - set VCPKGRS_DYNAMIC=1
+
+# enable Build mode
+build_script:
+  - cargo build --release
+
+test_script:
+  - cargo fmt -- --check
+  - cargo test --verbose
+  - cargo clippy --all-targets --all-features -- -D clippy::nursery

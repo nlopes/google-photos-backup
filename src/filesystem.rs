@@ -43,6 +43,7 @@ impl FilesystemSafeEscaper for String {
 mod tests {
     use super::FilesystemSafeEscaper;
     #[test]
+    #[cfg(not(target_os = "windows"))]
     fn test_escape() {
         assert_eq!(
             String::from("img-98/12/12.jpg").escape(),
