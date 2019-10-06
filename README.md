@@ -1,6 +1,7 @@
 # Google Photos Backup
 
 [![Build Status](https://travis-ci.org/nlopes/google-photos-backup.svg?branch=master)](https://travis-ci.org/nlopes/google-photos-backup)
+[![Build status](https://ci.appveyor.com/api/projects/status/57a7yxinpc5yas43/branch/master?svg=true)](https://ci.appveyor.com/project/nlopes/google-photos-backup/branch/master)
 [![Apache 2.0 licensed](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](https://github.com/nlopes/google-photos-backup/blob/master/LICENSE)
 
 Command line interface to backup your Google Photos.
